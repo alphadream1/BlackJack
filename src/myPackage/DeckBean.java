@@ -4,8 +4,10 @@ import java.util.ArrayList;
 
 public class DeckBean {
 
-	public ArrayList<CardBean> createDeck() {
-		ArrayList<CardBean> cardList = new ArrayList<>();
+	private ArrayList<CardBean> cardList;
+
+	public DeckBean() {
+		cardList = new ArrayList<>();
 
 		for (Color color : Color.values()) {
 			for (Face face : Face.values()) {
@@ -13,11 +15,10 @@ public class DeckBean {
 				cardList.add(card);
 			}
 		}
-		return cardList;
 	}
 
-	public void printDeck(ArrayList<CardBean> myDeck) {
-		for (CardBean cardBean : myDeck) {
+	public void printDeck() {
+		for (CardBean cardBean : cardList) {
 			System.out.println(cardBean.getFace() + " of " + cardBean.getColor());
 		}
 	}
