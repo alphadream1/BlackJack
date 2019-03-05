@@ -30,6 +30,12 @@ class CardBean {
 
 	}
 
+	// override de la methode toString
+	@Override
+	public String toString() {
+		return face + " of " + color;
+	}
+
 	// ----------------
 	// getter & setter
 	// ----------------

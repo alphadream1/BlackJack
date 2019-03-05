@@ -17,6 +17,17 @@ public class DeckBean {
 		}
 	}
 
+	@Override
+	public String toString() {
+		String deckToString = "";
+		for (CardBean cardBean : cardList) {
+			deckToString += cardBean.toString() + " ||| ";
+		}
+		return deckToString;
+	}
+
+	// methode deprecated
+	@Deprecated
 	public void printDeck() {
 		for (CardBean cardBean : cardList) {
 			System.out.println(cardBean.getFace() + " of " + cardBean.getColor());
