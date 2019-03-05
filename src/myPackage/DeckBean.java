@@ -1,6 +1,7 @@
 package myPackage;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class DeckBean {
 
@@ -17,11 +18,15 @@ public class DeckBean {
 		}
 	}
 
+	public void shuffleCards() {
+		Collections.shuffle(cardList);
+	}
+
 	@Override
 	public String toString() {
 		String deckToString = "";
 		for (CardBean cardBean : cardList) {
-			deckToString += cardBean.toString() + " ||| ";
+			deckToString += cardBean.toString() + "\n";
 		}
 		return deckToString;
 	}

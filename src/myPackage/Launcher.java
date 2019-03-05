@@ -9,6 +9,8 @@ public class Launcher {
 		// appel de la methode printDeck pour afficher la liste des carte dans la
 		// console
 		System.out.println(deckBean);
+		deckBean.shuffleCards();
+		System.out.println(deckBean);
 	}
 
 }
