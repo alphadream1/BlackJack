@@ -22,6 +22,12 @@ public class DeckBean {
 		Collections.shuffle(cardList);
 	}
 
+	public CardBean pickCard() {
+		CardBean pickCard;
+		pickCard = cardList.remove(0);
+		return pickCard;
+	}
+
 	@Override
 	public String toString() {
 		String deckToString = "";
@@ -29,6 +35,10 @@ public class DeckBean {
 			deckToString += cardBean.toString() + "\n";
 		}
 		return deckToString;
+	}
+
+	public void printNumberOfCards() {
+		System.out.println(cardList.size());
 	}
 
 	// methode deprecated

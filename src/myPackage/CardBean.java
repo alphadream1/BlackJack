@@ -26,10 +26,6 @@ class CardBean {
 	// methode
 	// -----------------
 
-	public void makeCard() {
-
-	}
-
 	// override de la methode toString
 	@Override
 	public String toString() {
