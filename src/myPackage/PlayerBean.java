@@ -15,9 +15,18 @@ public class PlayerBean {
 		hand = new HandBean();
 	}
 
-	public void addHand(HandBean handBean) {
-		hand = handBean;
+	// ---------------------
+	// methode
+	// ---------------------
+
+	public int handValuesCalculator() {
+		int handValue = 0;
+		for (CardBean cardBean : hand.getHandPlayer()) {
+			handValue += cardBean.getFace().getValues();
+		}
+		return handValue;
 	}
+
 	// ----------------
 	// getter & setter
 	// ----------------

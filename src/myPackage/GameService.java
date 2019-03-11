@@ -16,10 +16,13 @@ public class GameService {
 	// methodes
 	// -------------------
 
-	public void startNewGame(String namePlayer1) {
+	public void startNewGame1P(String namePlayer1) {
 		deck = new DeckBean();
 		deck.shuffleCards();
-		player1 = new PlayerBean();
+		player1 = new PlayerBean(namePlayer1);
+		bank = new PlayerBean("Bank");
+		player1.getHand().addCardStartGame(deck.pickCard(), deck.pickCard());
+		bank.getHand().addCardStartGame(deck.pickCard(), deck.pickCard());
 
 	}
 

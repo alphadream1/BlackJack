@@ -2,10 +2,11 @@ package myPackage;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class DeckBean {
 
-	private ArrayList<CardBean> cardList;
+	private List<CardBean> cardList;
 
 	public DeckBean() {
 		cardList = new ArrayList<>();

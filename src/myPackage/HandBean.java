@@ -16,6 +16,10 @@ public class HandBean {
 		handPlayer = new ArrayList<>();
 	}
 
+	// -------------------
+	// methode
+	// ------------------
+
 	public void addCardStartGame(CardBean card1, CardBean card2) {
 		handPlayer.add(card1);
 		handPlayer.add(card2);

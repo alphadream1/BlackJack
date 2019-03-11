@@ -1,30 +1,28 @@
 package myPackage;
 
+import java.util.Scanner;
+
 public class Launcher {
 
 	public static void main(String[] args) {
 
-		// instancation du nouveaux deck
-		DeckBean deck = new DeckBean();
-		// appel de la methode printDeck pour afficher la liste des carte dans la
-		// console
-		System.out.println(deck);
-		deck.shuffleCards();
-		System.out.println(deck);
-		deck.printNumberOfCards();
+		GameService game = new GameService();
+		game.startNewGame1P("bob");
+		Scanner sc = new Scanner(System.in);
 
-		HandBean hand = new HandBean();
-		hand.addCard(deck.pickCard());
-		hand.addCard(deck.pickCard());
-		System.err.println();
-		System.err.println(hand);
-		deck.printNumberOfCards();
+		// jeux de test
+		System.out.println(game.getMyDeck());
 
-		PlayerBean player1 = new PlayerBean();
-		player1.addHand(hand);
-		System.out.println(player1.getHand().toString());
-		player1.getHand().addCard(deck.pickCard());
-		System.out.println(player1.getHand().toString());
+		System.err.println(game.getPlayer1().getName());
+		System.err.println(game.getPlayer1().getHand());
+		System.err.println(game.getPlayer1().handValuesCalculator());
+
+		System.out.println(game.getBank().getName());
+		System.out.println(game.getBank().getHand());
+		System.out.println(game.getBank().handValuesCalculator());
+		game.getBank().getHand().addCard(game.getMyDeck().pickCard());
+		System.out.println(game.getBank().getHand());
+		System.out.println(game.getBank().handValuesCalculator());
 
 	}
 
