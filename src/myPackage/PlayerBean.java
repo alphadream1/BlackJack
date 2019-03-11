@@ -4,15 +4,18 @@ public class PlayerBean {
 
 	private String name;
 	private HandBean hand;
+	int score;
 
 	public PlayerBean() {
 		super();
 		hand = new HandBean();
+		score = 0;
 	}
 
 	public PlayerBean(String name) {
 		this.name = name;
 		hand = new HandBean();
+		score = 0;
 	}
 
 	// ---------------------
@@ -46,5 +49,4 @@ public class PlayerBean {
 	public void setHand(HandBean hand) {
 		this.hand = hand;
 	}
-
 }

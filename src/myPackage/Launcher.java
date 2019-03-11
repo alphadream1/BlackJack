@@ -5,7 +5,7 @@ public class Launcher {
 	public static void main(String[] args) {
 
 		GameService game = new GameService();
-		game.startNewGame1P("bob");
+		game.startNewGame1P();
 
 	}
 

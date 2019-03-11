@@ -33,6 +33,13 @@ public class HandBean {
 		return getHandPlayer().get(1);
 	}
 
+	public int showNbCard() {
+		int nbCard = 0;
+		for (; nbCard > handPlayer.size(); nbCard++) {
+		}
+		return nbCard;
+	}
+
 	@Override
 	public String toString() {
 		StringBuffer handToString = new StringBuffer();
