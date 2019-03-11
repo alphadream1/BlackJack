@@ -31,11 +31,11 @@ public class DeckBean {
 
 	@Override
 	public String toString() {
-		String deckToString = "";
+		StringBuffer deckToString = new StringBuffer();
 		for (CardBean cardBean : cardList) {
-			deckToString += cardBean.toString() + "\n";
+			deckToString.append(cardBean.toString() + "\n");
 		}
-		return deckToString;
+		return deckToString.toString();
 	}
 
 	public void printNumberOfCards() {

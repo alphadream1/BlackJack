@@ -29,13 +29,17 @@ public class HandBean {
 		handPlayer.add(card);
 	}
 
+	public CardBean viewCardBankStartGame() {
+		return getHandPlayer().get(1);
+	}
+
 	@Override
 	public String toString() {
-		String handToString = "";
+		StringBuffer handToString = new StringBuffer();
 		for (CardBean cardBean : handPlayer) {
-			handToString += cardBean.toString() + "\n";
+			handToString.append(cardBean.toString() + "\n");
 		}
-		return handToString;
+		return handToString.toString();
 	}
 
 	// ----------------
