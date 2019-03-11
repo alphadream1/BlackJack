@@ -5,7 +5,7 @@ import java.util.List;
 
 public class HandBean {
 
-	private List<CardBean> handPlayer;
+	private List<CardBean> cardList;
 
 	// ----------------
 	// constructor
@@ -13,7 +13,7 @@ public class HandBean {
 
 	public HandBean() {
 		super();
-		handPlayer = new ArrayList<>();
+		cardList = new ArrayList<>();
 	}
 
 	// -------------------
@@ -21,21 +21,21 @@ public class HandBean {
 	// ------------------
 
 	public void addCardStartGame(CardBean card1, CardBean card2) {
-		handPlayer.add(card1);
-		handPlayer.add(card2);
+		cardList.add(card1);
+		cardList.add(card2);
 	}
 
 	public void addCard(CardBean card) {
-		handPlayer.add(card);
+		cardList.add(card);
 	}
 
 	public CardBean viewCardBankStartGame() {
-		return getHandPlayer().get(1);
+		return cardList.get(1);
 	}
 
 	public int showNbCard() {
 		int nbCard = 0;
-		for (; nbCard > handPlayer.size(); nbCard++) {
+		for (; nbCard > cardList.size(); nbCard++) {
 		}
 		return nbCard;
 	}
@@ -43,22 +43,18 @@ public class HandBean {
 	@Override
 	public String toString() {
 		StringBuffer handToString = new StringBuffer();
-		for (CardBean cardBean : handPlayer) {
+		for (CardBean cardBean : cardList) {
 			handToString.append(cardBean.toString() + "\n");
 		}
 		return handToString.toString();
 	}
 
+	public List<CardBean> getCardList() {
+		return cardList;
+	}
+
 	// ----------------
 	// getter & setter
 	// ----------------
-
-	public List<CardBean> getHandPlayer() {
-		return handPlayer;
-	}
-
-	public void setHandPlayer(List<CardBean> handPlayer) {
-		this.handPlayer = handPlayer;
-	}
 
 }

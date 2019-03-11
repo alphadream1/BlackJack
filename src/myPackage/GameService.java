@@ -19,7 +19,7 @@ public class GameService {
 	// -------------------
 
 	public void startNewGame1P() {
-		deck = new DeckBean();
+//		deck = new DeckBean();
 		deck.shuffleCards();
 		player1 = new PlayerBean("Player");
 		bank = new PlayerBean("Bank");
@@ -57,8 +57,7 @@ public class GameService {
 	}
 
 	public void viewHandPlayers() {
-		System.err.println(
-				"bank have " + getBank().getHand().viewCardBankStartGame() + " and the score is " + bank.score);
+		System.err.println("bank have " + bank.getHand().viewCardBankStartGame() + " and the score is " + bank.score);
 		System.out.println(" ");
 		System.out.println("Player have " + getPlayer1().getHand() + " and the value is "
 				+ getPlayer1().handValuesCalculator() + " and the score is " + player1.score);

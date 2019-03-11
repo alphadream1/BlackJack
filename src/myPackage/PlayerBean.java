@@ -24,7 +24,7 @@ public class PlayerBean {
 
 	public int handValuesCalculator() {
 		int handValue = 0;
-		for (CardBean cardBean : hand.getHandPlayer()) {
+		for (CardBean cardBean : hand.getCardList()) {
 			handValue += cardBean.getFace().getValues();
 		}
 		return handValue;
