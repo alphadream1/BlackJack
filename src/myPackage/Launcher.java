@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Launcher {
 
+	private static final int BLACK_JACK = 21;
 	private static final String RESPONSE_YES = "y";
 	private static final String RESPONSE_NO = "n";
 	public static Scanner sc;
@@ -11,29 +12,36 @@ public class Launcher {
 	public static void main(String[] args) {
 
 		sc = new Scanner(System.in);
+		boolean playerResponse = false;
 		GameService game = new GameService();
 		game.startNewGame1P();
-		gameSuite(game);
-		continuGame(game);
+		do {
+			if (playerResponse) {
+				game.nextGame();
+			}
+			gameSuite(game);
 
+		} while (continuGame(playerResponse));
 	}
 
-	public static void continuGame(GameService game) {
-		boolean res = true;
-		do {
-			System.out.println("continu game? 'y' for yes ou 'n' for no");
-			String playerResponse = sc.nextLine();
+	public static boolean continuGame(boolean response) {
+		System.out.println("continu game? 'y' for yes ou 'n' for no");
+		String playerResponse = sc.nextLine();
+		boolean whileContinu = true;
+		while (whileContinu) {
 			if (RESPONSE_YES.equals(playerResponse)) {
-				game.nextGame();
-				gameSuite(game);
-				continuGame(game);
+				System.out.println("cool, go next game!");
+				response = true;
+				whileContinu = false;
 			} else if (RESPONSE_NO.equals(playerResponse)) {
 				System.out.println("ok, bye bye.");
-				res = false;
+				whileContinu = false;
+				response = false;
 			} else {
 				System.out.println("is not the good key, press 'y' or 'n'");
 			}
-		} while (res);
+		}
+		return response;
 	}
 
 	public static void gameSuite(GameService game) {
@@ -41,7 +49,6 @@ public class Launcher {
 		playerTurn(game);
 		bankTurn(game);
 		andTheWinnerIs(game);
-		continuGame(game);
 	}
 
 	public static void viewHandPlayers(GameService game) {
@@ -54,21 +61,29 @@ public class Launcher {
 	}
 
 	public static void playerTurn(GameService game) {
-		boolean res;
+		boolean res = true;
 		String str = "";
 		do {
-			System.out.println("Player 1 do you want to add card? 'y' for yes, 'n' for no");
-			str = sc.nextLine();
-			res = true;
-			if (str.equals(RESPONSE_YES)) {
-				game.drawCardPlayer();
-				System.out.println(" Player have " + game.getPlayer1().getHand() + " and the value is "
-						+ game.getPlayer1().handValuesCalculator());
-			} else if (str.equals(RESPONSE_NO)) {
-				System.out.println("Ok for the player, bank turn now");
+			if (game.getPlayer1().handValuesCalculator() == BLACK_JACK) {
+				System.out.println("Black Jack !");
+				res = false;
+			} else if (game.getPlayer1().handValuesCalculator() > BLACK_JACK) {
+				System.out.println("sorry to big !");
 				res = false;
 			} else {
-				System.out.println("is not the good key, press 'y' or 'n'");
+				System.out.println("Player 1 do you want to add card? 'y' for yes, 'n' for no");
+				str = sc.nextLine();
+				if (str.equals(RESPONSE_YES)) {
+					game.drawCardPlayer();
+					System.out.println(" Player have " + game.getPlayer1().getHand() + " and the value is "
+							+ game.getPlayer1().handValuesCalculator());
+					res = true;
+				} else if (str.equals(RESPONSE_NO)) {
+					System.out.println("Ok for the player, bank turn now");
+					res = false;
+				} else {
+					System.out.println("is not the good key, press 'y' or 'n'");
+				}
 			}
 		} while (res);
 
