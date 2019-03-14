@@ -35,11 +35,11 @@ public class GameService {
 	}
 
 	public void drawCardPlayer() {
-		getPlayer1().getHand().addCard(getMyDeck().pickCard());
+		player1.getHand().addCard(getMyDeck().pickCard());
 	}
 
 	public void drawCardBank() {
-		getBank().getHand().addCard(getMyDeck().pickCard());
+		bank.getHand().addCard(getMyDeck().pickCard());
 	}
 
 	public Boolean calculateWinner() {

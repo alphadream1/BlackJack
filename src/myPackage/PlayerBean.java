@@ -2,6 +2,7 @@ package myPackage;
 
 public class PlayerBean {
 
+	private static final int BLACK_JACK = 21;
 	private String name;
 	private HandBean hand;
 	int score;
@@ -27,20 +28,29 @@ public class PlayerBean {
 		for (CardBean cardBean : hand.getCardList()) {
 			handValue += cardBean.getFace().getValues();
 		}
-		if (handValue > 21 && checkAceInHand()) {
+
+		for (int numberOfAce = checkAceInHand(); numberOfAce > 0; numberOfAce--) {
 			handValue -= 10;
 		}
 		return handValue;
 	}
 
-	public boolean checkAceInHand() {
-		boolean aceResponse = false;
+	public int checkAceInHand() {
+		int aceCount = 0;
 		for (CardBean cardBean : hand.getCardList()) {
 			if (cardBean.getFace() == Face.ace) {
-				aceResponse = true;
+				aceCount++;
 			}
 		}
-		return aceResponse;
+		return aceCount;
+	}
+
+	public boolean checkBlackJack() {
+		boolean blackJackResponse = false;
+		if (handValuesCalculator() == BLACK_JACK && hand.showNbCard() == 2) {
+			blackJackResponse = true;
+		}
+		return blackJackResponse;
 	}
 
 	// ----------------
