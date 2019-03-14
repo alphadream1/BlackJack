@@ -7,15 +7,15 @@ public class IHM {
 	private static final int BLACK_JACK = 21;
 	private static final String RESPONSE_YES = "y";
 	private static final String RESPONSE_NO = "n";
-	public static Scanner sc;
+	public static Scanner scannerConsole;
 
 	public IHM() {
-		sc = new Scanner(System.in);
+		scannerConsole = new Scanner(System.in);
 	}
 
 	public boolean continuGame(boolean response) {
 		System.out.println("continu game? 'y' for yes ou 'n' for no");
-		String playerResponse = sc.nextLine();
+		String playerResponse = scannerConsole.nextLine();
 		boolean whileContinu = true;
 		while (whileContinu) {
 			if (RESPONSE_YES.equals(playerResponse)) {
@@ -50,34 +50,35 @@ public class IHM {
 	}
 
 	public void playerTurn(GameService game) {
-		boolean res = true;
-		String str = "";
+		boolean doWhileStatement = true;
+		String playerResponse = "";
 		do {
-			if (game.getPlayer1().checkBlackJack()) {
+			if (game.getPlayer1().handValuesCalculator() == BLACK_JACK
+					&& game.getPlayer1().getHand().showNbCard() == 2) {
 				System.out.println("Black Jack !");
-				res = false;
+				doWhileStatement = false;
 			} else if (game.getPlayer1().handValuesCalculator() == BLACK_JACK) {
 				System.out.println("Yeah 21 !!!");
-				res = false;
+				doWhileStatement = false;
 			} else if (game.getPlayer1().handValuesCalculator() > BLACK_JACK) {
 				System.out.println("sorry to big !");
-				res = false;
+				doWhileStatement = false;
 			} else {
 				System.out.println("Player 1 do you want to add card? 'y' for yes, 'n' for no");
-				str = sc.nextLine();
-				if (str.equals(RESPONSE_YES)) {
+				playerResponse = scannerConsole.nextLine();
+				if (RESPONSE_YES.equals(playerResponse)) {
 					game.drawCardPlayer();
 					System.out.println(" Player have " + game.getPlayer1().getHand() + " and the value is "
 							+ game.getPlayer1().handValuesCalculator());
-					res = true;
-				} else if (str.equals(RESPONSE_NO)) {
+					doWhileStatement = true;
+				} else if (RESPONSE_NO.equals(playerResponse)) {
 					System.out.println("Ok for the player, bank turn now");
-					res = false;
+					doWhileStatement = false;
 				} else {
 					System.out.println("is not the good key, press 'y' or 'n'");
 				}
 			}
-		} while (res);
+		} while (doWhileStatement);
 
 	}
 

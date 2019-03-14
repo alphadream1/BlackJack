@@ -6,13 +6,13 @@ public class Launcher {
 
 		boolean playerResponse = true;
 
-		GameService game = new GameService();
+		GameService gameService = new GameService();
 		IHM ihm = new IHM();
-		game.startNewGame1P();
+		gameService.startNewGame1P();
 		do {
-			ihm.gameSuite(game);
+			ihm.gameSuite(gameService);
 			if (playerResponse) {
-				game.nextGame();
+				gameService.nextGame();
 			}
 		} while (ihm.continuGame(playerResponse));
 	}

@@ -29,8 +29,12 @@ public class PlayerBean {
 			handValue += cardBean.getFace().getValues();
 		}
 		if (handValue > BLACK_JACK) {
-			for (int numberOfAce = checkAceInHand(); numberOfAce > 0; numberOfAce--) {
+			if (hand.showNbCard() == 2) {
 				handValue -= 10;
+			} else {
+				for (int numberOfAce = checkAceInHand(); numberOfAce > 0; numberOfAce--) {
+					handValue -= 10;
+				}
 			}
 		}
 		return handValue;
@@ -44,14 +48,6 @@ public class PlayerBean {
 			}
 		}
 		return aceCount;
-	}
-
-	public boolean checkBlackJack() {
-		boolean blackJackResponse = false;
-		if (handValuesCalculator() == BLACK_JACK && hand.showNbCard() == 2) {
-			blackJackResponse = true;
-		}
-		return blackJackResponse;
 	}
 
 	// ----------------
