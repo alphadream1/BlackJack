@@ -47,6 +47,10 @@ public class IHM {
 		System.out.println("Player have " + game.getPlayer1().getHand() + " and the value is "
 				+ game.getPlayer1().handValuesCalculator() + " and the score is " + game.getPlayer1().score);
 		System.out.println();
+
+//		HandBean hBean =  game.getPlayer1().getHand();
+//		hBean.addCard(card);
+//		voir methode clone();
 	}
 
 	public void playerTurn(GameService game) {
