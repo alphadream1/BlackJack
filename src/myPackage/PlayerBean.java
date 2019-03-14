@@ -27,7 +27,20 @@ public class PlayerBean {
 		for (CardBean cardBean : hand.getCardList()) {
 			handValue += cardBean.getFace().getValues();
 		}
+		if (handValue > 21 && checkAceInHand()) {
+			handValue -= 10;
+		}
 		return handValue;
+	}
+
+	public boolean checkAceInHand() {
+		boolean aceResponse = false;
+		for (CardBean cardBean : hand.getCardList()) {
+			if (cardBean.getFace() == Face.ace) {
+				aceResponse = true;
+			}
+		}
+		return aceResponse;
 	}
 
 	// ----------------

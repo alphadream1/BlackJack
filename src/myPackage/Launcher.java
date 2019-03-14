@@ -12,15 +12,14 @@ public class Launcher {
 	public static void main(String[] args) {
 
 		sc = new Scanner(System.in);
-		boolean playerResponse = false;
+		boolean playerResponse = true;
 		GameService game = new GameService();
 		game.startNewGame1P();
 		do {
+			gameSuite(game);
 			if (playerResponse) {
 				game.nextGame();
 			}
-			gameSuite(game);
-
 		} while (continuGame(playerResponse));
 	}
 
