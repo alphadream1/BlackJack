@@ -28,9 +28,10 @@ public class PlayerBean {
 		for (CardBean cardBean : hand.getCardList()) {
 			handValue += cardBean.getFace().getValues();
 		}
-
-		for (int numberOfAce = checkAceInHand(); numberOfAce > 0; numberOfAce--) {
-			handValue -= 10;
+		if (handValue > BLACK_JACK) {
+			for (int numberOfAce = checkAceInHand(); numberOfAce > 0; numberOfAce--) {
+				handValue -= 10;
+			}
 		}
 		return handValue;
 	}
