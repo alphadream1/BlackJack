@@ -1,7 +1,5 @@
 package myPackage;
 
-import java.util.Scanner;
-
 public class GameService {
 
 	private PlayerBean player1, bank;
@@ -19,36 +17,16 @@ public class GameService {
 	// -------------------
 
 	public void startNewGame1P() {
-//		deck = new DeckBean();
 		deck.shuffleCards();
 		player1 = new PlayerBean("Player");
 		bank = new PlayerBean("Bank");
-		Scanner sc = new Scanner(System.in);
 		giveHandPlayers();
-		viewHandPlayers();
-		playerTurn(sc);
-		bankTurn(sc);
-		andTheWinnerIs();
-		continuGame(sc);
 	}
 
-	public void continuGame(Scanner sc) {
-		System.out.println("continu game? 'y' for yes ou 'n' for no");
-		String str = sc.nextLine();
-		if (str.equals("y")) {
-			player1.setHand(new HandBean());
-			bank.setHand(new HandBean());
-			giveHandPlayers();
-			viewHandPlayers();
-			playerTurn(sc);
-			bankTurn(sc);
-			andTheWinnerIs();
-			continuGame(sc);
-		} else if (str.equals("n")) {
-			System.out.println("ok, bye bye.");
-		} else {
-			System.out.println("is not the good key, press 'y' or 'n'");
-		}
+	public void nextGame() {
+		player1.setHand(new HandBean());
+		bank.setHand(new HandBean());
+		giveHandPlayers();
 	}
 
 	public void giveHandPlayers() {
@@ -56,67 +34,12 @@ public class GameService {
 		bank.getHand().addCardStartGame(deck.pickCard(), deck.pickCard());
 	}
 
-	public void viewHandPlayers() {
-		System.err.println("bank have " + bank.getHand().viewCardBankStartGame() + " and the score is " + bank.score);
-		System.out.println(" ");
-		System.out.println("Player have " + getPlayer1().getHand() + " and the value is "
-				+ getPlayer1().handValuesCalculator() + " and the score is " + player1.score);
-		System.out.println();
+	public void drawCardPlayer() {
+		getPlayer1().getHand().addCard(getMyDeck().pickCard());
 	}
 
-	public void playerTurn(Scanner sc) {
-		boolean res;
-		String str = "";
-		do {
-			System.out.println("Player 1 do you want to add card? 'y' for yes, 'n' for no");
-			str = sc.nextLine();
-			res = true;
-			if (str.equals("y")) {
-				getPlayer1().getHand().addCard(getMyDeck().pickCard());
-				System.out.println(" Player have " + getPlayer1().getHand() + " and the value is "
-						+ getPlayer1().handValuesCalculator());
-			} else if (str.equals("n")) {
-				System.out.println("Ok for the player, bank turn now");
-				res = false;
-			} else {
-				System.out.println("is not the good key, press 'y' or 'n'");
-			}
-		} while (res);
-
-	}
-
-	public void bankTurn(Scanner sc) {
-		boolean res;
-		String str = "";
-		System.err.println("Bank have " + bank.getHand() + " and the value is " + bank.handValuesCalculator());
-		do {
-			System.err.println("Bank do you want to add card? 'y' for yes, 'n' for no");
-			str = sc.nextLine();
-			res = true;
-			if (str.equals("y")) {
-				getBank().getHand().addCard(getMyDeck().pickCard());
-				System.err.println(
-						" Bank have " + getBank().getHand() + " and the value is " + getBank().handValuesCalculator());
-			} else if (str.equals("n")) {
-				System.err.println("Ok for Bank!");
-				res = false;
-			} else {
-				System.err.println("is not the good key, press 'y' or 'n'");
-			}
-		} while (res);
-
-	}
-
-	public void andTheWinnerIs() {
-		if (calculateWinner() == null) {
-			System.out.println("Egalité");
-		} else if (calculateWinner()) {
-			System.out.println("The Player win!!!");
-			player1.score++;
-		} else {
-			System.err.println("The Bank win!!!");
-			bank.score++;
-		}
+	public void drawCardBank() {
+		getBank().getHand().addCard(getMyDeck().pickCard());
 	}
 
 	public Boolean calculateWinner() {
